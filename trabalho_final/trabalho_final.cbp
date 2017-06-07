@@ -35,10 +35,18 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="grafo/grafo.h" />
+		<Unit filename="grafo/vertice.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="grafo/vertice.h" />
 		<Unit filename="lista_enc/lista_enc.c">
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="lista_enc/lista_enc.h" />
+		<Unit filename="lista_enc/no.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="lista_enc/no.h" />
 		<Unit filename="main.c">
 			<Option compilerVar="CC" />
 		</Unit>
