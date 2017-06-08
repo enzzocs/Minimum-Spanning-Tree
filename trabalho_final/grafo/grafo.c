@@ -13,9 +13,7 @@
 #include "vertice.h"
 #include "../lista_enc/lista_enc.h"
 #include "../lista_enc/no.h"
-#include "../fila/fila.h"
 
-#include "../pilha/pilha.h"
 
 #define FALSE 0
 #define TRUE 1
@@ -29,104 +27,6 @@ struct grafos
     int id;
     lista_enc_t *vertices;
 };
-
-
-void bfs(grafo_t *grafo, vertice_t* inicial)
-{
-    fila_t* Q = cria_fila();
-
-    no_t *no;
-    no = obter_cabeca(grafo->vertices);
-    while(no)
-    {
-        vertice_t * v = obter_dado(no);
-
-        vertice_set_pai(v, NULL);
-        vertice_set_dist (v, -1);
-        no = obtem_proximo(no);
-    }
-
-    vertice_set_dist (inicial, 0);
-    enqueue(inicial, Q);
-
-    while( !fila_vazia(Q) )
-    {
-
-        vertice_t *u = dequeue(Q);
-
-        lista_enc_t *arestas = vertice_get_arestas(u);
-
-        no = obter_cabeca(arestas);
-
-        while (no)
-        {
-
-            arestas_t *aresta = obter_dado(no);
-
-            vertice_t *v = aresta_get_adjacente(aresta);
-
-            if((vertice_get_dist(v)) == -1)
-            {
-                vertice_set_dist(v, vertice_get_dist(u)+1);
-                //printf("%d\n", vertice_get_dist(v));
-                vertice_set_pai(v, u);
-                enqueue(v, Q);
-            }
-
-            no = obtem_proximo(no);
-        }
-
-    }
-
-}
-
-
-void dfs(grafo_t *grafo, vertice_t* inicial)
-{
-    pilha_t *P = cria_pilha();
-
-    no_t *no;
-    no = obter_cabeca(grafo->vertices);
-    while(no)
-    {
-        vertice_t * v = obter_dado(no);
-
-        vertice_set_vist (v, 0);
-
-        no = obtem_proximo(no);
-    }
-    push(inicial, P);
-
-    while (!pilha_vazia(P))
-    {
-        vertice_t *u = pop(P);
-        if ( vertice_get_vist(u) == 0)
-        {
-            vertice_set_vist(u, 1);
-
-            lista_enc_t *arestas = vertice_get_arestas(u);
-
-            no = obter_cabeca(arestas);
-
-
-            while (no)
-            {
-
-                arestas_t *aresta = obter_dado(no);
-
-                vertice_t *v = aresta_get_adjacente(aresta);
-
-                push(v, P);
-
-
-                no = obtem_proximo(no);
-            }
-
-        }
-
-    }
-
-}
 
 //--------------------------------------------------------------------------------------
 
@@ -391,4 +291,43 @@ lista_enc_t *passa_vertice(grafo_t *grafo)
     }
 
     return grafo->vertices;
+}
+
+grafo_t *importar_grafo(const char *arquivo){
+
+    char buffer[100];
+    int ret, pai, filho;
+    no_t *elemento;
+    grafo_t *grafo;
+
+
+    if (arquivo == NULL){
+        fprintf(stderr, "importar_grafo_dot: ponteiros inválidos\n");
+        exit(EXIT_FAILURE);
+    }
+
+    FILE *fp = fopen(arquivo, "r");
+
+    if (fp == NULL){
+        perror("exportar_grafp_dot:");
+        exit(EXIT_FAILURE);
+    }
+
+    fgets (buffer, 100, fp); // Joga fora a primeira linha por ser o cabeçalho
+    grafo = cria_grafo(1);
+    while (fgets(buffer,100,fp)!= '}') {
+        ret = sscanf(buffer, "%d -- %d", &pai, &filho);
+        if (ret != 3)
+        {
+            perror("Erro em main: fscanf");
+            exit(-1);
+        }
+
+//        elemento = cria_no(cria_vertice(pai, filho));
+//        add_cauda(grafo, elemento);
+
+    }
+    fclose(fp);
+    return grafo;
+
 }

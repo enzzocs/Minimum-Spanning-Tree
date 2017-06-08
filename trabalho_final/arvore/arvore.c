@@ -3,7 +3,6 @@
 
 #include "arvore.h"
 #include "../lista_enc/lista_enc.h"
-
 struct arvore{
     int id;
     int grau;

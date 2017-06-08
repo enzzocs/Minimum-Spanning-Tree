@@ -1,18 +1,24 @@
 # depslib dependency file v1.0
-1496353246 source:c:\users\maria negri\desktop\projeto\projeto_prog\projeto_prog\trabalho_final\grafo\grafo.c
+1496963880 source:c:\users\maria negri\desktop\projeto\projeto_prog\projeto_prog\trabalho_final\grafo\grafo.c
 	<stdio.h>
 	<stdlib.h>
+	<stdarg.h>
+	<limits.h>
 	"grafo.h"
+	"vertice.h"
 	"../lista_enc/lista_enc.h"
+	"../lista_enc/no.h"
 
-1496352314 c:\users\maria negri\desktop\projeto\projeto_prog\projeto_prog\trabalho_final\grafo\grafo.h
+1496963880 c:\users\maria negri\desktop\projeto\projeto_prog\projeto_prog\trabalho_final\grafo\grafo.h
+	"vertice.h"
 
 1495028338 c:\users\maria negri\desktop\projeto\projeto_prog\projeto_prog\trabalho_final\lista_enc\lista_enc.h
 	"no.h"
 
-1446667744 source:c:\users\maria negri\desktop\projeto\projeto_prog\projeto_prog\trabalho_final\main.c
+1496963916 source:c:\users\maria negri\desktop\projeto\projeto_prog\projeto_prog\trabalho_final\main.c
 	<stdio.h>
 	<stdlib.h>
+	"grafo/grafo.h"
 
 1495028338 source:c:\users\maria negri\desktop\projeto\projeto_prog\projeto_prog\trabalho_final\lista_enc\lista_enc.c
 	<stdio.h>
@@ -21,4 +27,26 @@
 	"no.h"
 
 1495028338 c:\users\maria negri\desktop\projeto\projeto_prog\projeto_prog\trabalho_final\lista_enc\no.h
+
+1496781792 source:c:\users\maria negri\desktop\projeto\projeto_prog\projeto_prog\trabalho_final\grafo\vertice.c
+	<stdlib.h>
+	<stdio.h>
+	"vertice.h"
+	"../lista_enc/lista_enc.h"
+
+1495105310 c:\users\maria negri\desktop\projeto\projeto_prog\projeto_prog\trabalho_final\grafo\vertice.h
+	"../lista_enc/lista_enc.h"
+
+1495028338 source:c:\users\maria negri\desktop\projeto\projeto_prog\projeto_prog\trabalho_final\lista_enc\no.c
+	<stdio.h>
+	<stdlib.h>
+	"no.h"
+
+1496963437 source:c:\users\maria negri\desktop\projeto\projeto_prog\projeto_prog\trabalho_final\arvore\arvore.c
+	<stdio.h>
+	<stdlib.h>
+	"arvore.h"
+	"../lista_enc/lista_enc.h"
+
+1496959956 c:\users\maria negri\desktop\projeto\projeto_prog\projeto_prog\trabalho_final\arvore\arvore.h
 
