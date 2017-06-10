@@ -319,7 +319,11 @@ grafo_t *importar_grafo(const char *arquivo){
         ret = sscanf(buffer, "%d -- %d", &pai, &filho);
         if (ret != 3)
         {
+<<<<<<< HEAD
+            perror("Erro em importar_graf: fscanf");
+=======
             perror("Erro em importar_grafokk: fscanf");
+>>>>>>> e96ede83781da1420e8e81fac37715b81930ef31
             exit(-1);
         }
 
