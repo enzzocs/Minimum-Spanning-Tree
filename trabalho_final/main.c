@@ -7,7 +7,7 @@ int main()
 {
     grafo_t* grafo;
 
-    grafo = importar_grafo("grafo.txt");
+    grafo = importar_grafo("grafo.dot");
 
     return 0;
 }

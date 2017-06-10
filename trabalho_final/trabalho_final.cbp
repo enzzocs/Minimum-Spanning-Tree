@@ -35,10 +35,6 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="arvore/arvore.h" />
-		<Unit filename="fila/fila.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="fila/fila.h" />
 		<Unit filename="grafo/grafo.c">
 			<Option compilerVar="CC" />
 		</Unit>
