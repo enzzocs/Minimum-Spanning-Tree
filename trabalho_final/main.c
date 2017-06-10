@@ -9,6 +9,8 @@ int main()
 
     printf("Oi enzzo\n");
 
+    printf("grrr\n");
+
     grafo = importar_grafo("grafo.dot");
 
     return 0;
