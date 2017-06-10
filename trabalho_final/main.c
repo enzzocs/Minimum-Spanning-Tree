@@ -7,7 +7,7 @@ int main()
 {
     grafo_t* grafo;
 
-    printf("Oi enzzo");
+    printf("Oi enzzo\n");
 
     grafo = importar_grafo("grafo.dot");
 
