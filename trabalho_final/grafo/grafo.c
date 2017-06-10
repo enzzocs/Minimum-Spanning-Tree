@@ -319,7 +319,7 @@ grafo_t *importar_grafo(const char *arquivo){
         ret = sscanf(buffer, "%d -- %d", &pai, &filho);
         if (ret != 3)
         {
-            perror("Erro em importar_grafo: fscanf");
+            perror("Erro em importar_graf: fscanf");
             exit(-1);
         }
 
