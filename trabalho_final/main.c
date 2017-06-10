@@ -11,6 +11,8 @@ int main()
 
     printf("grrr\n");
 
+    printf("oi Maria\n");
+
     grafo = importar_grafo("grafo.dot");
 
     return 0;
