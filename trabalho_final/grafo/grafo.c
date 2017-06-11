@@ -295,8 +295,8 @@ lista_enc_t *passa_vertice(grafo_t *grafo)
 
 grafo_t *importar_grafo(const char *arquivo){
 
-    char buffer[100];
-    int ret, pai, filho;
+    char buffer[100], teste;
+    int ret, pai, filho, label;
     no_t *elemento;
     grafo_t *grafo;
 
@@ -309,21 +309,22 @@ grafo_t *importar_grafo(const char *arquivo){
     FILE *fp = fopen(arquivo, "r");
 
     if (fp == NULL){
-        perror("exportar_grafp_dot:");
+        perror("importar_grafp_dot:");
         exit(EXIT_FAILURE);
     }
 
     fgets (buffer, 100, fp); // Joga fora a primeira linha por ser o cabeçalho
     grafo = cria_grafo(1);
     while (fgets(buffer,100,fp)!= '}') {
-        ret = sscanf(buffer, "%d -- %d", &pai, &filho);
+        if (buffer[0] == 125){ //para o programa quando encontrar '}' no arquivo
+            break;
+        }
+        //puts(buffer);
+        ret = sscanf(buffer, "%d -- %d [label = %d];", &pai, &filho, &label);
+        printf("%d -- %d [label = %d]\n", pai, filho, label);
         if (ret != 3)
         {
-<<<<<<< HEAD
-            perror("Erro em importar_graf: fscanf");
-=======
-            perror("Erro em importar_grafokk: fscanf");
->>>>>>> e96ede83781da1420e8e81fac37715b81930ef31
+            perror("Erro em importar_grafokk: sscanf");
             exit(-1);
         }
 

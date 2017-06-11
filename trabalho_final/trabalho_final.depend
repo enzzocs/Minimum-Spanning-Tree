@@ -56,7 +56,7 @@
 	"arvore.h"
 	"../lista_enc/lista_enc.h"
 
-1497105660 source:c:\users\csenz\onedrive\documentos\github\projeto_prog\trabalho_final\main.c
+1497190229 source:c:\users\csenz\onedrive\documentos\github\projeto_prog\trabalho_final\main.c
 	<stdio.h>
 	<stdlib.h>
 	"grafo/grafo.h"
@@ -78,7 +78,7 @@
 	"lista_enc.h"
 	"no.h"
 
-1497108909 source:c:\users\csenz\onedrive\documentos\github\projeto_prog\trabalho_final\grafo\grafo.c
+1497190423 source:c:\users\csenz\onedrive\documentos\github\projeto_prog\trabalho_final\grafo\grafo.c
 	<stdio.h>
 	<stdlib.h>
 	<stdarg.h>
@@ -98,4 +98,6 @@
 	<stdio.h>
 	<stdlib.h>
 	"no.h"
+
+1496927744 c:\users\csenz\onedrive\documentos\github\projeto_prog\trabalho_final\arvore\arvore.h
 
