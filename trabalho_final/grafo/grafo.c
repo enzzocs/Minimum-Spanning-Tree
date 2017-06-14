@@ -313,7 +313,7 @@ grafo_t *importar_grafo(const char *arquivo){
         if (buffer[0] == 125){ //para o programa quando encontrar '}' no arquivo
             break;
         }
-        puts(buffer);
+        //puts(buffer);
         ret = sscanf(buffer, "%s -- %s [label = %d];", pai, filho, &label);
         printf("%s -- %s [label = %d]\n", pai, filho, label);
         if (ret != 3)
