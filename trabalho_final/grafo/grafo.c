@@ -1,10 +1,3 @@
-/*
- * grafo.c
- *
- *  Created on: Jul 5, 2016
- *      Author: Renan Augusto Starke
- */
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdarg.h>
@@ -296,7 +289,8 @@ lista_enc_t *passa_vertice(grafo_t *grafo)
 grafo_t *importar_grafo(const char *arquivo){
 
     char buffer[100], teste;
-    int ret, pai, filho, label;
+    int ret, label;
+    char filho[5], pai[5];
     no_t *elemento;
     grafo_t *grafo;
 
@@ -319,12 +313,12 @@ grafo_t *importar_grafo(const char *arquivo){
         if (buffer[0] == 125){ //para o programa quando encontrar '}' no arquivo
             break;
         }
-        //puts(buffer);
-        ret = sscanf(buffer, "%d -- %d [label = %d];", &pai, &filho, &label);
-        printf("%d -- %d [label = %d]\n", pai, filho, label);
+        puts(buffer);
+        ret = sscanf(buffer, "%s -- %s [label = %d];", pai, filho, &label);
+        printf("%s -- %s [label = %d]\n", pai, filho, label);
         if (ret != 3)
         {
-            perror("Erro em importar_grafokk: sscanf");
+            perror("Erro em importar_grafo: sscanf");
             exit(-1);
         }
 
