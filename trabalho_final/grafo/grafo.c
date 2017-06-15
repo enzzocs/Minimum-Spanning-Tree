@@ -97,12 +97,12 @@ vertice_t* procura_vertice(grafo_t *grafo, char* id)
 
         //obterm o id do vertice
         meu_id = vertice_get_id(vertice);
-        printf("%s --- %s \n", meu_id, id);
+        //printf("%s --- %s \n", meu_id, id);
 
         if (strcmp(meu_id, id) == 0)
         {
             //printf("%s --- %s --- entrou\n", meu_id, id);
-            printf("entrou\n");
+            //printf("entrou\n");
             return vertice;
         }
 
@@ -336,18 +336,16 @@ grafo_t *importar_grafo(const char *arquivo){
 
         if ((elemento_pai = procura_vertice(grafo, pai)) == NULL)
         {
-            printf("teste\n");
             elemento_pai = grafo_adicionar_vertice(grafo, pai);
 
         }
         if ((elemento_filho = procura_vertice(grafo, filho)) == NULL){
-            printf("teste\n");
             elemento_filho = grafo_adicionar_vertice(grafo, filho);
 
         }
 
-        printf("%s\n", vertice_get_id(elemento_pai));
-        printf("%s\n", vertice_get_id(elemento_filho));
+        //printf("%s\n", vertice_get_id(elemento_pai));
+        //printf("%s\n", vertice_get_id(elemento_filho));
 
         adiciona_aresta(elemento_pai, cria_aresta(elemento_pai, elemento_filho, label));
 
