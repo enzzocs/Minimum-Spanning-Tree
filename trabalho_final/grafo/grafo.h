@@ -14,10 +14,10 @@
 typedef struct grafos grafo_t;
 
 /* Cria um novo grafo com id */
-grafo_t *cria_grafo(int id);
+grafo_t *cria_grafo(char* id);
 
 /* Adiciona um vertice ao grafo */
-vertice_t* grafo_adicionar_vertice(grafo_t *grafo, int id);
+vertice_t* grafo_adicionar_vertice(grafo_t *grafo, char* id);
 
 /* Cria arestas:
  * grafo: grafo que pertence a aresta
@@ -29,7 +29,7 @@ vertice_t* grafo_adicionar_vertice(grafo_t *grafo, int id);
 void adiciona_adjacentes(grafo_t *grafo, vertice_t *vertice, int n, ...);
 
 /* Procura um vertice no grafo com id numerico */
-vertice_t* procura_vertice(grafo_t *grafo, int id);
+vertice_t* procura_vertice(grafo_t *grafo, char* id);
 
 /* Exporta o grafo utilizando a linguagem dot */
 void exportar_grafo_dot(const char *filename, grafo_t *grafo);

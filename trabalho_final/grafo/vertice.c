@@ -1,10 +1,3 @@
-/*
- * vertice.c
- *
- *  Created on: Jul 5, 2016
- *      Author: Renan Augusto Starke
- */
-
 #include <stdlib.h>
 #include <stdio.h>
 

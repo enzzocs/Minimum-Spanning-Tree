@@ -1,10 +1,3 @@
-/*
- * vertice.h
- *
- *  Created on: Jul 5, 2016
- *      Author: Renan Augusto Starke
- */
-
 #ifndef GRAFO_VERTICE_H_
 #define GRAFO_VERTICE_H_
 

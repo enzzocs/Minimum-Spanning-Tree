@@ -23,7 +23,7 @@ struct grafos
 
 //--------------------------------------------------------------------------------------
 
-grafo_t *cria_grafo(int id)
+grafo_t *cria_grafo(char* id)
 {
     grafo_t *p = NULL;
 
@@ -41,7 +41,7 @@ grafo_t *cria_grafo(int id)
     return p;
 }
 
-vertice_t* grafo_adicionar_vertice(grafo_t *grafo, int id)
+vertice_t* grafo_adicionar_vertice(grafo_t *grafo, char* id)
 {
     vertice_t *vertice;
     no_t *no;
@@ -70,11 +70,11 @@ vertice_t* grafo_adicionar_vertice(grafo_t *grafo, int id)
     return vertice;
 }
 
-vertice_t* procura_vertice(grafo_t *grafo, int id)
+vertice_t* procura_vertice(grafo_t *grafo, char* id)
 {
     no_t *no_lista;
     vertice_t *vertice;
-    int meu_id;
+    char* meu_id;
 
     if (grafo == NULL)
     {
@@ -288,11 +288,13 @@ lista_enc_t *passa_vertice(grafo_t *grafo)
 
 grafo_t *importar_grafo(const char *arquivo){
 
-    char buffer[100], teste;
+    char buffer[100];
     int ret, label;
     char filho[5], pai[5];
-    no_t *elemento;
     grafo_t *grafo;
+    arestas_t *aresta;
+    vertice_t *elemento_pai;
+    vertice_t *elemento_filho;
 
 
     if (arquivo == NULL){
@@ -309,7 +311,7 @@ grafo_t *importar_grafo(const char *arquivo){
 
     fgets (buffer, 100, fp); // Joga fora a primeira linha por ser o cabeçalho
     grafo = cria_grafo(1);
-    while (fgets(buffer,100,fp)!= '}') {
+    while (fgets(buffer,100,fp)) {
         if (buffer[0] == 125){ //para o programa quando encontrar '}' no arquivo
             break;
         }
@@ -322,11 +324,20 @@ grafo_t *importar_grafo(const char *arquivo){
             exit(-1);
         }
 
-//        elemento = cria_no(cria_vertice(pai, filho));
-//        add_cauda(grafo, elemento);
+        if (procura_vertice(grafo, pai) == NULL)
+        {
+            elemento_pai = grafo_adicionar_vertice(grafo, pai);
+        }
+        if (procura_vertice(grafo, filho) == NULL){
+            elemento_filho = grafo_adicionar_vertice(grafo, filho);
+        }
+
+        adiciona_aresta(elemento_pai, cria_aresta(elemento_pai, elemento_filho, label));
+
+
 
     }
     fclose(fp);
-    return grafo;
+    return;
 
 }
