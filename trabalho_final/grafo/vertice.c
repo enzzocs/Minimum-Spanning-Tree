@@ -38,7 +38,10 @@ vertice_t *cria_vertice(char* id){
 		exit(EXIT_FAILURE);
 	}
 
-	p->id = id;
+	//p->id = id;
+	p->id= malloc(sizeof(char));
+	memset(p->id, '\0', sizeof(p->id));
+	strcpy(p->id, id);
 	p->arestas = cria_lista_enc();
 	p->id_grupo = -1;
 	p->pai = NULL;

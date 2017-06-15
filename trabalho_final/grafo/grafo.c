@@ -97,10 +97,12 @@ vertice_t* procura_vertice(grafo_t *grafo, char* id)
 
         //obterm o id do vertice
         meu_id = vertice_get_id(vertice);
+        printf("%s --- %s \n", meu_id, id);
 
-        if (strcmp(meu_id, id) > 0)
+        if (strcmp(meu_id, id) == 0)
         {
-            printf("%s --- %s --- entrou\n", meu_id, id);
+            //printf("%s --- %s --- entrou\n", meu_id, id);
+            printf("entrou\n");
             return vertice;
         }
 
@@ -295,14 +297,15 @@ grafo_t *importar_grafo(const char *arquivo){
 
     char buffer[100];
     int ret, label;
-    char *filho, *pai;
+    char **filho, **pai;
+    //char filho[5], pai[5];
     grafo_t *grafo;
     arestas_t *aresta;
     vertice_t *elemento_pai;
     vertice_t *elemento_filho;
 
-    filho= malloc(3*sizeof(char));
-    pai= malloc(3*sizeof(char));
+    filho= malloc(sizeof(char));
+    pai= malloc(sizeof(char));
     if (arquivo == NULL){
         fprintf(stderr, "importar_grafo_dot: ponteiros inválidos\n");
         exit(EXIT_FAILURE);
@@ -323,20 +326,21 @@ grafo_t *importar_grafo(const char *arquivo){
         }
         //puts(buffer);
         ret = sscanf(buffer, "%s -- %s [label = %d];", pai, filho, &label);
+
         if (ret != 3)
         {
             perror("Erro em importar_grafo: sscanf");
             exit(-1);
         }
-        printf("%s -- %s [label = %d]\n", pai, filho, label);
+        //printf("%s -- %s [label = %d]\n", pai, filho, label);
 
-        if (procura_vertice(grafo, pai) == NULL)
+        if ((elemento_pai = procura_vertice(grafo, pai)) == NULL)
         {
             printf("teste\n");
             elemento_pai = grafo_adicionar_vertice(grafo, pai);
 
         }
-        if (procura_vertice(grafo, filho) == NULL){
+        if ((elemento_filho = procura_vertice(grafo, filho)) == NULL){
             printf("teste\n");
             elemento_filho = grafo_adicionar_vertice(grafo, filho);
 
