@@ -11,13 +11,13 @@ typedef struct arestas arestas_t;
 typedef enum status_aresta { VAZIO, EXPORTADA } status_aresta_t;
 
 /* Cria um novo vertice com id */
-vertice_t *cria_vertice(int id);
+vertice_t *cria_vertice(char* id);
 
 /* Cria uma nova aresta */
 arestas_t *cria_aresta(vertice_t *fonte, vertice_t *destino, int peso);
 
 /* Obtem id de um vertice */
-int vertice_get_id(vertice_t *vertice);
+char* vertice_get_id(vertice_t *vertice);
 
 /* Adiciona uma aresta a um grafo */
 void adiciona_aresta(vertice_t *vertice, arestas_t *aresta);

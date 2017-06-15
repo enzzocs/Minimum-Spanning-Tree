@@ -5,7 +5,7 @@
 #include "../lista_enc/lista_enc.h"
 
 struct vertices {
-	int id;
+	char* id;
 	lista_enc_t *arestas;
 
 	/* Informacoes para componentes conexos */
@@ -28,7 +28,7 @@ struct arestas {
 };
 
 
-vertice_t *cria_vertice(int id){
+vertice_t *cria_vertice(char* id){
 	vertice_t *p = NULL;
 
 	p = malloc(sizeof(vertice_t));
@@ -46,7 +46,7 @@ vertice_t *cria_vertice(int id){
 	return p;
 }
 
-int vertice_get_id(vertice_t *vertice)
+char* vertice_get_id(vertice_t *vertice)
 {
 	if (vertice == NULL)
 	{

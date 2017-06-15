@@ -9,5 +9,7 @@ int main()
 
     grafo = importar_grafo("grafo.txt");
 
+    exportar_grafo_dot("saida_grafo.txt", grafo);
+
     return 0;
 }

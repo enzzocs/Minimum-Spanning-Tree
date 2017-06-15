@@ -14,7 +14,7 @@
 typedef struct grafos grafo_t;
 
 /* Cria um novo grafo com id */
-grafo_t *cria_grafo(char* id);
+grafo_t *cria_grafo(int id);
 
 /* Adiciona um vertice ao grafo */
 vertice_t* grafo_adicionar_vertice(grafo_t *grafo, char* id);

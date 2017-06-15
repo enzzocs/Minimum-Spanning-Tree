@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <stdarg.h>
 #include <limits.h>
+#include <string.h>
 #include "grafo.h"
 #include "vertice.h"
 #include "../lista_enc/lista_enc.h"
@@ -23,7 +24,7 @@ struct grafos
 
 //--------------------------------------------------------------------------------------
 
-grafo_t *cria_grafo(char* id)
+grafo_t *cria_grafo(int id)
 {
     grafo_t *p = NULL;
 
@@ -47,7 +48,7 @@ vertice_t* grafo_adicionar_vertice(grafo_t *grafo, char* id)
     no_t *no;
 
 #ifdef DEBUG
-    printf("grafo_adicionar_vertice: %d\n", id);
+    printf("grafo_adicionar_vertice: %s\n", id);
 #endif
 
     if (grafo == NULL)
@@ -60,6 +61,8 @@ vertice_t* grafo_adicionar_vertice(grafo_t *grafo, char* id)
     {
         fprintf(stderr,"grafo_adicionar_vertice: vertice duplicado!\n");
         exit(EXIT_FAILURE);
+        //printf("voltou\n");
+        //return procura_vertice(grafo, id);
     }
 
     vertice = cria_vertice(id);
@@ -95,8 +98,9 @@ vertice_t* procura_vertice(grafo_t *grafo, char* id)
         //obterm o id do vertice
         meu_id = vertice_get_id(vertice);
 
-        if (meu_id == id)
+        if (strcmp(meu_id, id) == 0)
         {
+            printf("%s --- %s --- entrou\n", meu_id, id);
             return vertice;
         }
 
@@ -162,7 +166,7 @@ void exportar_grafo_dot(const char *filename, grafo_t *grafo)
 
     if (filename == NULL || grafo == NULL)
     {
-        fprintf(stderr, "exportar_grafp_dot: ponteiros invalidos\n");
+        fprintf(stderr, "exportar_grafo_dot: ponteiros invalidos\n");
         exit(EXIT_FAILURE);
     }
 
@@ -186,6 +190,7 @@ void exportar_grafo_dot(const char *filename, grafo_t *grafo)
         lista_arestas = vertice_get_arestas(vertice);
 
         no_arest = obter_cabeca(lista_arestas);
+
         while (no_arest)
         {
             aresta = obter_dado(no_arest);
@@ -202,13 +207,13 @@ void exportar_grafo_dot(const char *filename, grafo_t *grafo)
             adjacente = aresta_get_adjacente(aresta);
 
             //marca contra-aresta também como exporta no caso de grafo não direcionados
-            contra_aresta = procurar_adjacente(adjacente, vertice);
-            aresta_set_status(contra_aresta, EXPORTADA);
+            //contra_aresta = procurar_adjacente(adjacente, vertice);
+            //aresta_set_status(contra_aresta, EXPORTADA);
 
             //obtem peso
             peso = aresta_get_peso(aresta);
 
-            fprintf(file, "\t%d -- %d [label = %d];\n",
+            fprintf(file, "\t%s -- %s [label = %d];\n",
                     vertice_get_id(vertice),
                     vertice_get_id(adjacente),
                     peso);
@@ -290,13 +295,14 @@ grafo_t *importar_grafo(const char *arquivo){
 
     char buffer[100];
     int ret, label;
-    char filho[5], pai[5];
+    char *filho, *pai;
     grafo_t *grafo;
     arestas_t *aresta;
     vertice_t *elemento_pai;
     vertice_t *elemento_filho;
 
-
+    filho= malloc(sizeof(char));
+    pai= malloc(sizeof(char));
     if (arquivo == NULL){
         fprintf(stderr, "importar_grafo_dot: ponteiros inválidos\n");
         exit(EXIT_FAILURE);
@@ -305,7 +311,7 @@ grafo_t *importar_grafo(const char *arquivo){
     FILE *fp = fopen(arquivo, "r");
 
     if (fp == NULL){
-        perror("importar_grafp_dot:");
+        perror("importar_grafo_dot:");
         exit(EXIT_FAILURE);
     }
 
@@ -317,27 +323,33 @@ grafo_t *importar_grafo(const char *arquivo){
         }
         //puts(buffer);
         ret = sscanf(buffer, "%s -- %s [label = %d];", pai, filho, &label);
-        printf("%s -- %s [label = %d]\n", pai, filho, label);
         if (ret != 3)
         {
             perror("Erro em importar_grafo: sscanf");
             exit(-1);
         }
+        printf("%s -- %s [label = %d]\n", pai, filho, label);
 
         if (procura_vertice(grafo, pai) == NULL)
         {
+            printf("teste\n");
             elemento_pai = grafo_adicionar_vertice(grafo, pai);
+
         }
         if (procura_vertice(grafo, filho) == NULL){
+            printf("teste\n");
             elemento_filho = grafo_adicionar_vertice(grafo, filho);
+
         }
+
+        printf("%s\n", vertice_get_id(elemento_pai));
+        printf("%s\n", vertice_get_id(elemento_filho));
 
         adiciona_aresta(elemento_pai, cria_aresta(elemento_pai, elemento_filho, label));
 
 
-
     }
     fclose(fp);
-    return;
+    return grafo;
 
 }
