@@ -1,2 +1,13 @@
 graph {
+	R5 -- R7 [label = 5];
+	R5 -- R7 [label = 6];
+	R5 -- R7 [label = 9];
+	R5 -- R7 [label = 15];
+	R5 -- R7 [label = 7];
+	R5 -- R7 [label = 8];
+	R5 -- R7 [label = 11];
+	R5 -- R7 [label = 8];
+	R5 -- R7 [label = 7];
+	R5 -- R7 [label = 5];
+	R5 -- R7 [label = 9];
 }

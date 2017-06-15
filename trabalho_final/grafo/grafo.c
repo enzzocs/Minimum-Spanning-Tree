@@ -98,7 +98,7 @@ vertice_t* procura_vertice(grafo_t *grafo, char* id)
         //obterm o id do vertice
         meu_id = vertice_get_id(vertice);
 
-        if (strcmp(meu_id, id) == 0)
+        if (strcmp(meu_id, id) > 0)
         {
             printf("%s --- %s --- entrou\n", meu_id, id);
             return vertice;
@@ -301,8 +301,8 @@ grafo_t *importar_grafo(const char *arquivo){
     vertice_t *elemento_pai;
     vertice_t *elemento_filho;
 
-    filho= malloc(sizeof(char));
-    pai= malloc(sizeof(char));
+    filho= malloc(3*sizeof(char));
+    pai= malloc(3*sizeof(char));
     if (arquivo == NULL){
         fprintf(stderr, "importar_grafo_dot: ponteiros inválidos\n");
         exit(EXIT_FAILURE);
