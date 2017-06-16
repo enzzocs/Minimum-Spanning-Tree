@@ -143,3 +143,23 @@ void exportar_arvore_dot(const char *filename, arvore_t *arvore)
     fprintf(file, "}\n");
     fclose(file);
 }
+arvore_t *minimum_spannin_tree (grafo_t *grafo){
+    arvore_t *arvore;
+    no_t *no_vert;
+    no_t *no_aresta;
+    vertice_t *vertice;
+    arestas_t *aresta;
+    lista_enc_t *lista_arestas;
+    lista_enc_t *lista_arestas_possiveis; //arestas para onde o grafo pode andar para formar a arvore
+
+    cria_arvore(1);
+
+    no_vert = obter_cabeca(grafo_get_vertices(grafo));
+    while(no_vert){
+        vertice = obter_dado(no_vert);
+
+        lista_arestas = vertice_get_arestas(vertice);
+
+    }
+    return arvore;
+}

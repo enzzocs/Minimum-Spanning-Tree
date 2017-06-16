@@ -355,3 +355,14 @@ grafo_t *importar_grafo(const char *arquivo){
     return grafo;
 
 }
+
+lista_enc_t *grafo_get_vertices(grafo_t *grafo)
+{
+	if (grafo == NULL)
+	{
+		fprintf(stderr, "grafo_get_vertices: grafo invalido!\n");
+		exit(EXIT_FAILURE);
+	}
+
+	return grafo->vertices;
+}
