@@ -51,11 +51,13 @@
 
 1497440775 c:\users\maria negri\desktop\projeto\projeto_prog\projeto_prog\trabalho_final\arvore\arvore.h
 
-1497628528 source:c:\users\csenz\onedrive\documentos\github\projeto_prog\trabalho_final\arvore\arvore.c
+1497912819 source:c:\users\csenz\onedrive\documentos\github\projeto_prog\trabalho_final\arvore\arvore.c
 	<stdio.h>
 	<stdlib.h>
+	<string.h>
 	"arvore.h"
 	"../lista_enc/lista_enc.h"
+	"../grafo/vertice.h"
 
 1497626624 source:c:\users\csenz\onedrive\documentos\github\projeto_prog\trabalho_final\main.c
 	<stdio.h>
@@ -63,10 +65,10 @@
 	"grafo/grafo.h"
 	"arvore/arvore.h"
 
-1497628659 c:\users\csenz\onedrive\documentos\github\projeto_prog\trabalho_final\grafo\grafo.h
+1497910253 c:\users\csenz\onedrive\documentos\github\projeto_prog\trabalho_final\grafo\grafo.h
 	"vertice.h"
 
-1497542798 c:\users\csenz\onedrive\documentos\github\projeto_prog\trabalho_final\grafo\vertice.h
+1497911977 c:\users\csenz\onedrive\documentos\github\projeto_prog\trabalho_final\grafo\vertice.h
 	"../lista_enc/lista_enc.h"
 
 1496927659 c:\users\csenz\onedrive\documentos\github\projeto_prog\trabalho_final\lista_enc\lista_enc.h
@@ -91,9 +93,10 @@
 	"../lista_enc/lista_enc.h"
 	"../lista_enc/no.h"
 
-1497558025 source:c:\users\csenz\onedrive\documentos\github\projeto_prog\trabalho_final\grafo\vertice.c
+1497912615 source:c:\users\csenz\onedrive\documentos\github\projeto_prog\trabalho_final\grafo\vertice.c
 	<stdlib.h>
 	<stdio.h>
+	<string.h>
 	"vertice.h"
 	"../lista_enc/lista_enc.h"
 

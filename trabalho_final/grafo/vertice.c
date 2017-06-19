@@ -1,6 +1,6 @@
 #include <stdlib.h>
 #include <stdio.h>
-
+#include <string.h>
 #include "vertice.h"
 #include "../lista_enc/lista_enc.h"
 
@@ -237,40 +237,12 @@ int vertice_get_vist(vertice_t *vertice){
 
 	return vertice->visitado;
 }
-//int vertices_comprimento(vertice_t *fonte, vertice_t *destino)
-//{
-//	arestas_t *aresta;
-//
-//	if (fonte == NULL || destino == NULL){
-//		fprintf(stderr, "vertices_comprimento: vertices invalidos\n");
-//		exit(EXIT_FAILURE);
-//	}
-//
-//	aresta = procurar_adjacente(fonte, destino);
-//
-//	if (aresta == NULL) {
-//		fprintf(stderr, "vertices_comprimento: vertices nao adjacentes\n");
-//		exit(EXIT_FAILURE);
-//	}
-//
-//	return aresta->peso;
-//}
-//
-//void vertice_set_antec_caminho(vertice_t *vertice, vertice_t *antecessor){
-//
-//	if (vertice == NULL || antecessor == NULL){
-//		fprintf(stderr, "vertice_set_antec_caminho: vertices invalidos\n");
-//		exit(EXIT_FAILURE);
-//	}
-//
-//	vertice->antecessor_caminho = antecessor;
-//}
-//
-//vertice_t *vertice_get_antec_caminho(vertice_t *vertice) {
-//	if (vertice == NULL){
-//		fprintf(stderr, "vertice_get_antec_aminho: vertice invalidos\n");
-//		exit(EXIT_FAILURE);
-//	}
-//
-//	return vertice->antecessor_caminho;
-//}
+
+vertice_t *aresta_get_dest(arestas_t* aresta){
+    if (aresta == NULL){
+			fprintf(stderr, "aresta_get_dest: aresta invalido\n");
+			exit(EXIT_FAILURE);
+	}
+
+	return aresta->dest;
+}

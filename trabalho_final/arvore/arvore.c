@@ -1,8 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
-
+#include <string.h>
 #include "arvore.h"
 #include "../lista_enc/lista_enc.h"
+#include "../grafo/vertice.h"
 struct arvore{
     int id;
     int grau;
@@ -149,17 +150,53 @@ arvore_t *minimum_spannin_tree (grafo_t *grafo){
     no_t *no_aresta;
     vertice_t *vertice;
     arestas_t *aresta;
+    arestas_t* auxiliar;
     lista_enc_t *lista_arestas;
-    lista_enc_t *lista_arestas_possiveis; //arestas para onde o grafo pode andar para formar a arvore
+    arestas_t **lista_arestas_possiveis; //arestas para onde o grafo pode andar para formar a arvore
+    int i=0;
+    int j=0, aux;
+    arvore = cria_arvore(1);
 
-    cria_arvore(1);
-
+    lista_arestas_possiveis = malloc(11*sizeof(arestas_t*));
     no_vert = obter_cabeca(grafo_get_vertices(grafo));
     while(no_vert){
         vertice = obter_dado(no_vert);
-
+        vertice_set_vist(vertice, 1);
+        printf("teste\n");
         lista_arestas = vertice_get_arestas(vertice);
+        no_aresta = obter_cabeca(lista_arestas);
 
+        while (no_aresta){
+            aresta = obter_dado(no_aresta);
+            //if(vertice_get_vist(aresta_get_dest(aresta))!=1){
+            lista_arestas_possiveis[i]= aresta;
+            printf("%d -- %d\n", i, aresta_get_peso(lista_arestas_possiveis[i]));
+            //}
+            i++;
+
+            no_aresta = obtem_proximo(no_aresta);
+        }
+
+        aresta = lista_arestas_possiveis[j];
+        while(j<i-1){
+            //printf("teste");
+            if(aresta_get_peso(aresta)>aresta_get_peso(lista_arestas_possiveis[j+1])){
+                aresta= aresta_get_peso(lista_arestas_possiveis[j+1]);
+                aux= j+1;
+            }
+            printf("%d -- %d\n", i, j);
+            j++;
+        }
+
+        //auxiliar = lista_arestas_possiveis[i];
+        //memset(lista_arestas_possiveis[i], '\0', sizeof(lista_arestas_possiveis[i]));
+        //lista_arestas_possiveis[i] = lista_arestas_possiveis[aux];
+        //lista_arestas_possiveis[aux]=auxiliar;
+
+        //i--;
+        j=0;
+        //printf()
+        no_vert = obtem_proximo(no_vert);
     }
     return arvore;
 }

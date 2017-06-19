@@ -51,4 +51,6 @@ grafo_t *importar_grafo(const char *arquivo);
 
 lista_enc_t *grafo_get_vertices(grafo_t *grafo);
 
+
+
 #endif /* GRAFO_GRAFO_H_ */
