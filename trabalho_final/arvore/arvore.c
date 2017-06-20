@@ -5,7 +5,7 @@
 #include "../lista_enc/lista_enc.h"
 #include "../grafo/vertice.h"
 struct arvore{
-    int id;
+    char* id;
     int grau;
     sub_arvore_t *raiz;
     lista_enc_t *sub_arvores;
@@ -13,6 +13,7 @@ struct arvore{
 
 struct sub_arvore{
     int id;
+    int dist_pai;
     sub_arvore_t *pai;
     lista_enc_t *sub_arvores;
 };
@@ -35,7 +36,7 @@ arvore_t *cria_arvore(int id)
     return p;
 }
 
-sub_arvore_t *cria_sub_arvore(int id){
+sub_arvore_t *cria_sub_arvore(char* id){
     sub_arvore_t *p = NULL;
 
     p = (sub_arvore_t*) malloc(sizeof(sub_arvore_t));
@@ -46,14 +47,17 @@ sub_arvore_t *cria_sub_arvore(int id){
         exit(EXIT_FAILURE);
     }
 
-    p->id = id;
+    p->id= malloc(sizeof(char));
+	memset(p->id, '\0', sizeof(p->id));
+	strcpy(p->id, id);
     p->sub_arvores = cria_lista_enc();
+    p->dist_pai= -1;
 
 
     return p;
 }
 
-sub_arvore_t *arvore_adicionar_subarvore(arvore_t *arvore, int id){
+sub_arvore_t *arvore_adicionar_subarvore(arvore_t *arvore, char* id){
     sub_arvore_t *sub_arvore;
     no_t *no;
 
@@ -151,6 +155,8 @@ arvore_t *minimum_spannin_tree (grafo_t *grafo){
     vertice_t *vertice;
     arestas_t *aresta;
     arestas_t* auxiliar;
+    sub_arvore_t *pai;
+    sub_arvore_t *filho;
     lista_enc_t *lista_arestas;
     arestas_t **lista_arestas_possiveis; //arestas para onde o grafo pode andar para formar a arvore
     int i=0;
@@ -158,11 +164,16 @@ arvore_t *minimum_spannin_tree (grafo_t *grafo){
     arvore = cria_arvore(1);
 
     lista_arestas_possiveis = malloc(11*sizeof(arestas_t*));
+
     no_vert = obter_cabeca(grafo_get_vertices(grafo));
+
+    vertice = obter_dado(no_vert);
+    arvore_adicionar_subarvore(arvore, vertice_get_id(vertice));
+
     while(no_vert){
-        vertice = obter_dado(no_vert);
+        //vertice = obter_dado(no_vert);
         vertice_set_vist(vertice, 1);
-        printf("teste\n");
+        //printf("teste\n");
         lista_arestas = vertice_get_arestas(vertice);
         no_aresta = obter_cabeca(lista_arestas);
 
@@ -178,24 +189,37 @@ arvore_t *minimum_spannin_tree (grafo_t *grafo){
         }
 
         aresta = lista_arestas_possiveis[j];
+        aux=0;
         while(j<i-1){
-            //printf("teste");
             if(aresta_get_peso(aresta)>aresta_get_peso(lista_arestas_possiveis[j+1])){
-                aresta= aresta_get_peso(lista_arestas_possiveis[j+1]);
-                aux= j+1;
+                if((vertice_get_vist(aresta_get_dest(aresta))&& vertice_get_vist(aresta_get_fonte(aresta))) == 0){
+                    aresta = lista_arestas_possiveis[j+1];
+                    aux= j+1;
+                    printf("teste");
+                }
             }
             printf("%d -- %d\n", i, j);
             j++;
         }
 
-        //auxiliar = lista_arestas_possiveis[i];
-        //memset(lista_arestas_possiveis[i], '\0', sizeof(lista_arestas_possiveis[i]));
-        //lista_arestas_possiveis[i] = lista_arestas_possiveis[aux];
-        //lista_arestas_possiveis[aux]=auxiliar;
+        if(vertice_get_vist(aresta_get_fonte(aresta)) == 1){
+            vertice = aresta_get_dest(aresta);
+            filho = arvore_adicionar_subarvore(arvore, vertice_get_id(vertice));
 
-        //i--;
+        }
+
+
+
+
+
+
+        auxiliar = lista_arestas_possiveis[i-1];
+        copia(lista_arestas_possiveis, i-1, aux); //lista_arestas_possiveis[i] = lista_arestas_possiveis[aux];
+        copia2(lista_arestas_possiveis, auxiliar, aux); //lista_arestas_possiveis[aux]=auxiliar;
+
+        i--;
         j=0;
-        //printf()
+
         no_vert = obtem_proximo(no_vert);
     }
     return arvore;

@@ -13,6 +13,7 @@ struct vertices {
 
     /* Informações para BFS*/
     vertice_t* pai;
+    //sub_arvore_t *sub
     int dist;
     /* Informações DFS*/
     int visitado;
@@ -45,6 +46,7 @@ vertice_t *cria_vertice(char* id){
 	p->arestas = cria_lista_enc();
 	p->id_grupo = -1;
 	p->pai = NULL;
+	p->visitado=0;
 
 	return p;
 }
@@ -245,4 +247,25 @@ vertice_t *aresta_get_dest(arestas_t* aresta){
 	}
 
 	return aresta->dest;
+}
+
+void copia (arestas_t **lista, int i, int j){
+    lista[i]->peso = lista[j]->peso;
+    lista[i]->fonte = lista[j]->fonte;
+    lista[i]->dest = lista[j]->dest;
+}
+
+void copia2(arestas_t **lista, arestas_t *fonte, int i){
+    lista[i]->peso = fonte->peso;
+    lista[i]->fonte = fonte->fonte;
+    lista[i]->dest = fonte->dest;
+}
+
+vertice_t *aresta_get_fonte(arestas_t* aresta){
+    if (aresta == NULL){
+			fprintf(stderr, "aresta_get_fonte: aresta invalido\n");
+			exit(EXIT_FAILURE);
+	}
+
+	return aresta->fonte;
 }

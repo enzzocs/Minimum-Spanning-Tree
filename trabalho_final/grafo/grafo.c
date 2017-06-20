@@ -297,7 +297,7 @@ grafo_t *importar_grafo(const char *arquivo){
 
     char buffer[100];
     int ret, label;
-    char **filho, **pai;
+    char *filho, *pai;
     //char filho[5], pai[5];
     grafo_t *grafo;
     arestas_t *aresta;
