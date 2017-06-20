@@ -3,6 +3,7 @@
 #include <string.h>
 #include "vertice.h"
 #include "../lista_enc/lista_enc.h"
+#include "../arvore/arvore.h"
 
 struct vertices {
 	char* id;
@@ -13,7 +14,7 @@ struct vertices {
 
     /* Informações para BFS*/
     vertice_t* pai;
-    //sub_arvore_t *sub
+    sub_arvore_t *sub;
     int dist;
     /* Informações DFS*/
     int visitado;
@@ -261,6 +262,15 @@ void copia2(arestas_t **lista, arestas_t *fonte, int i){
     lista[i]->dest = fonte->dest;
 }
 
+void vertice_set_sub(vertice_t *vertice, sub_arvore_t *sub){
+    if (vertice == NULL){
+        fprintf(stderr, "vertice_set_sub: vertice invalido\n");
+        exit(EXIT_FAILURE);
+	}
+
+	vertice->sub =  sub;
+}
+
 vertice_t *aresta_get_fonte(arestas_t* aresta){
     if (aresta == NULL){
 			fprintf(stderr, "aresta_get_fonte: aresta invalido\n");
@@ -268,4 +278,13 @@ vertice_t *aresta_get_fonte(arestas_t* aresta){
 	}
 
 	return aresta->fonte;
+}
+
+sub_arvore_t *vertice_get_sub(vertice_t *vertice){
+    if (vertice == NULL){
+			fprintf(stderr, "vertice_get_sub: aresta invalido\n");
+			exit(EXIT_FAILURE);
+	}
+
+	return vertice->sub;
 }

@@ -90,11 +90,12 @@ void define_pai(arvore_t *arvore, int id_filho, int id_pai){
 }
 
 
-void define_pai_por_ptr(sub_arvore_t *pai, sub_arvore_t *filho){
+void define_pai_por_ptr(sub_arvore_t *pai, sub_arvore_t *filho, int label){
 
     no_t * no = cria_no(filho);
     add_cauda(pai->sub_arvores, no);
     filho->pai = pai;
+    filho->dist_pai = label;
 
 }
 
@@ -138,7 +139,7 @@ void exportar_arvore_dot(const char *filename, arvore_t *arvore)
 
             sub_arvore = obter_dado(no_adj);
 
-            fprintf(file, "\t%d -- %d;\n", sub_arvore_pai->id, sub_arvore->id);
+            fprintf(file, "\t%s -- %s;\n", sub_arvore_pai->id, sub_arvore->id);
 
             no_adj = obtem_proximo(no_adj);
 
@@ -159,7 +160,7 @@ arvore_t *minimum_spannin_tree (grafo_t *grafo){
     sub_arvore_t *filho;
     lista_enc_t *lista_arestas;
     arestas_t **lista_arestas_possiveis; //arestas para onde o grafo pode andar para formar a arvore
-    int i=0;
+    int i=0, x=0;
     int j=0, aux;
     arvore = cria_arvore(1);
 
@@ -168,7 +169,8 @@ arvore_t *minimum_spannin_tree (grafo_t *grafo){
     no_vert = obter_cabeca(grafo_get_vertices(grafo));
 
     vertice = obter_dado(no_vert);
-    arvore_adicionar_subarvore(arvore, vertice_get_id(vertice));
+    pai = arvore_adicionar_subarvore(arvore, vertice_get_id(vertice));
+    vertice_set_sub(vertice, pai);
 
     while(no_vert){
         //vertice = obter_dado(no_vert);
@@ -181,7 +183,7 @@ arvore_t *minimum_spannin_tree (grafo_t *grafo){
             aresta = obter_dado(no_aresta);
             //if(vertice_get_vist(aresta_get_dest(aresta))!=1){
             lista_arestas_possiveis[i]= aresta;
-            printf("%d -- %d\n", i, aresta_get_peso(lista_arestas_possiveis[i]));
+            //printf("%d -- %d\n", i, aresta_get_peso(lista_arestas_possiveis[i]));
             //}
             i++;
 
@@ -195,30 +197,57 @@ arvore_t *minimum_spannin_tree (grafo_t *grafo){
                 if((vertice_get_vist(aresta_get_dest(aresta))&& vertice_get_vist(aresta_get_fonte(aresta))) == 0){
                     aresta = lista_arestas_possiveis[j+1];
                     aux= j+1;
-                    printf("teste");
+           //         printf("teste");
                 }
             }
-            printf("%d -- %d\n", i, j);
+           // printf("%d -- %d\n", i, j);
             j++;
         }
 
-        if(vertice_get_vist(aresta_get_fonte(aresta)) == 1){
+        if(vertice_get_vist(aresta_get_fonte(aresta)) == 1 ){
             vertice = aresta_get_dest(aresta);
             filho = arvore_adicionar_subarvore(arvore, vertice_get_id(vertice));
+            vertice_set_sub(vertice, filho);
+            vertice = aresta_get_fonte(aresta);
+            pai = vertice_get_sub(vertice);
+            //printf("%s -- %s\n", pai->id, filho->id);
+            define_pai_por_ptr(pai, filho, aresta_get_peso(aresta));
 
+            vertice = aresta_get_dest(aresta);
         }
 
+        else {
+            vertice = aresta_get_fonte(aresta);
+            filho = arvore_adicionar_subarvore(arvore, vertice_get_id(vertice));
+            vertice_set_sub(vertice, filho);
+            vertice = aresta_get_dest(aresta);
+            pai = vertice_get_sub(vertice);
+            //printf("%s -- %s", &pai, &filho);
+            define_pai_por_ptr(pai, filho, aresta_get_peso(aresta));
 
+            vertice = aresta_get_fonte(aresta);
+        }
 
-
-
+        while(x<=i-1){
+            printf("antes: %d\n", aresta_get_peso(lista_arestas_possiveis[x]));
+            x++;
+        }
 
         auxiliar = lista_arestas_possiveis[i-1];
         copia(lista_arestas_possiveis, i-1, aux); //lista_arestas_possiveis[i] = lista_arestas_possiveis[aux];
         copia2(lista_arestas_possiveis, auxiliar, aux); //lista_arestas_possiveis[aux]=auxiliar;
 
-        i--;
+        x=0;
+        i= i-1;
         j=0;
+
+        while(x<=i){
+            printf("depois: %d\n", aresta_get_peso(lista_arestas_possiveis[x]));
+            x++;
+        }
+        printf("\n");
+        x=0;
+
 
         no_vert = obtem_proximo(no_vert);
     }

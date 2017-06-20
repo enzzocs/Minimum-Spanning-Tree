@@ -56,7 +56,7 @@
 1497970626 c:\users\maria negri\desktop\projeto\projeto_prog\projeto_prog\trabalho_final\arvore\arvore.h
 	"../grafo/grafo.h"
 
-1497912819 source:c:\users\csenz\onedrive\documentos\github\projeto_prog\trabalho_final\arvore\arvore.c
+1497983442 source:c:\users\csenz\onedrive\documentos\github\projeto_prog\trabalho_final\arvore\arvore.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
@@ -64,7 +64,7 @@
 	"../lista_enc/lista_enc.h"
 	"../grafo/vertice.h"
 
-1497626624 source:c:\users\csenz\onedrive\documentos\github\projeto_prog\trabalho_final\main.c
+1497981335 source:c:\users\csenz\onedrive\documentos\github\projeto_prog\trabalho_final\main.c
 	<stdio.h>
 	<stdlib.h>
 	"grafo/grafo.h"
@@ -73,7 +73,7 @@
 1497910253 c:\users\csenz\onedrive\documentos\github\projeto_prog\trabalho_final\grafo\grafo.h
 	"vertice.h"
 
-1497911977 c:\users\csenz\onedrive\documentos\github\projeto_prog\trabalho_final\grafo\vertice.h
+1497980030 c:\users\csenz\onedrive\documentos\github\projeto_prog\trabalho_final\grafo\vertice.h
 	"../lista_enc/lista_enc.h"
 
 1496927659 c:\users\csenz\onedrive\documentos\github\projeto_prog\trabalho_final\lista_enc\lista_enc.h
@@ -87,7 +87,7 @@
 	"lista_enc.h"
 	"no.h"
 
-1497628659 source:c:\users\csenz\onedrive\documentos\github\projeto_prog\trabalho_final\grafo\grafo.c
+1497977289 source:c:\users\csenz\onedrive\documentos\github\projeto_prog\trabalho_final\grafo\grafo.c
 	<stdio.h>
 	<stdlib.h>
 	<stdarg.h>
@@ -98,18 +98,19 @@
 	"../lista_enc/lista_enc.h"
 	"../lista_enc/no.h"
 
-1497912615 source:c:\users\csenz\onedrive\documentos\github\projeto_prog\trabalho_final\grafo\vertice.c
+1497980879 source:c:\users\csenz\onedrive\documentos\github\projeto_prog\trabalho_final\grafo\vertice.c
 	<stdlib.h>
 	<stdio.h>
 	<string.h>
 	"vertice.h"
 	"../lista_enc/lista_enc.h"
+	"../arvore/arvore.h"
 
 1496927659 source:c:\users\csenz\onedrive\documentos\github\projeto_prog\trabalho_final\lista_enc\no.c
 	<stdio.h>
 	<stdlib.h>
 	"no.h"
 
-1497626624 c:\users\csenz\onedrive\documentos\github\projeto_prog\trabalho_final\arvore\arvore.h
+1497979218 c:\users\csenz\onedrive\documentos\github\projeto_prog\trabalho_final\arvore\arvore.h
 	"../grafo/grafo.h"
 
