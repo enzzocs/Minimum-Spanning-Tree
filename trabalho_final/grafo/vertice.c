@@ -261,6 +261,13 @@ void copia2(arestas_t **lista, arestas_t *fonte, int i){
     lista[i]->dest = fonte->dest;
 }
 
+void copia3 (arestas_t *auxiliar, arestas_t **lista, int i){
+    auxiliar->peso = lista[i]->peso;
+    auxiliar->fonte = lista[i]->fonte;
+    auxiliar->dest = lista[i]->dest;
+}
+
+
 vertice_t *aresta_get_fonte(arestas_t* aresta){
     if (aresta == NULL){
 			fprintf(stderr, "aresta_get_fonte: aresta invalido\n");

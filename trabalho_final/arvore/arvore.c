@@ -163,6 +163,8 @@ arvore_t *minimum_spannin_tree (grafo_t *grafo){
     int j=0, aux;
     arvore = cria_arvore(1);
 
+    auxiliar = cria_sub_arvore(aux);
+
     lista_arestas_possiveis = malloc(11*sizeof(arestas_t*));
 
     no_vert = obter_cabeca(grafo_get_vertices(grafo));
@@ -198,7 +200,7 @@ arvore_t *minimum_spannin_tree (grafo_t *grafo){
                     printf("teste");
                 }
             }
-            printf("%d -- %d\n", i, j);
+            //printf("%d -- %d\n", i, j);
             j++;
         }
 
@@ -208,12 +210,8 @@ arvore_t *minimum_spannin_tree (grafo_t *grafo){
 
         }
 
-
-
-
-
-
-        auxiliar = lista_arestas_possiveis[i-1];
+        //auxiliar = lista_arestas_possiveis[i-1];
+        copia3(auxiliar, lista_arestas_possiveis, i-1);
         copia(lista_arestas_possiveis, i-1, aux); //lista_arestas_possiveis[i] = lista_arestas_possiveis[aux];
         copia2(lista_arestas_possiveis, auxiliar, aux); //lista_arestas_possiveis[aux]=auxiliar;
 

@@ -15,5 +15,7 @@ int main()
 
     arvore = minimum_spannin_tree(grafo);
 
+    exportar_arvore_dot("saida_arvore.txt", arvore);
+
     return 0;
 }
