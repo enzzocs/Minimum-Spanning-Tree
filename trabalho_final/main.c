@@ -11,11 +11,11 @@ int main()
 
     grafo = importar_grafo("grafo.txt");
 
-    exportar_grafo_dot("saida_grafo.txt", grafo);
+    //exportar_grafo_dot("saida_grafo.txt", grafo);
 
     arvore = minimum_spannin_tree(grafo);
 
-    exportar_arvore_dot("saida_arvore.txt", arvore);
+    exportar_arvore_dot("minimum_spanning_tree.txt", arvore);
 
     return 0;
 }

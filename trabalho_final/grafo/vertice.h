@@ -2,6 +2,7 @@
 #define GRAFO_VERTICE_H_
 
 #include "../lista_enc/lista_enc.h"
+//#include "../arvore/arvore.h"
 
 /* Exporta os tipos de dados do vertice e arestas */
 typedef struct vertices vertice_t;
@@ -62,5 +63,12 @@ void vertice_set_dist(vertice_t *vertice, int dist);
 vertice_t *aresta_get_dest(arestas_t* aresta);
 
 void vertice_set_vist(vertice_t *vertice, int visitado);
+
+void copia2(arestas_t **lista, arestas_t *fonte, int i);
+
+void copia (arestas_t **lista, int i, int j);
+
+//void vertice_set_sub(vertice_t *vertice, sub_arvore_t *sub);
+
 
 #endif /* GRAFO_VERTICE_H_ */
