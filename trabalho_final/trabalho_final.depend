@@ -57,7 +57,7 @@
 1497970626 c:\users\maria negri\desktop\projeto\projeto_prog\projeto_prog\trabalho_final\arvore\arvore.h
 	"../grafo/grafo.h"
 
-1497983442 source:c:\users\csenz\onedrive\documentos\github\projeto_prog\trabalho_final\arvore\arvore.c
+1498448428 source:c:\users\csenz\onedrive\documentos\github\projeto_prog\trabalho_final\arvore\arvore.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
@@ -99,7 +99,7 @@
 	"../lista_enc/lista_enc.h"
 	"../lista_enc/no.h"
 
-1497980879 source:c:\users\csenz\onedrive\documentos\github\projeto_prog\trabalho_final\grafo\vertice.c
+1498443821 source:c:\users\csenz\onedrive\documentos\github\projeto_prog\trabalho_final\grafo\vertice.c
 	<stdlib.h>
 	<stdio.h>
 	<string.h>

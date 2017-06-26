@@ -17,5 +17,7 @@ int main()
 
     exportar_arvore_dot("minimum_spanning_tree.txt", arvore);
 
+    //libera_grafo(grafo);
+
     return 0;
 }
