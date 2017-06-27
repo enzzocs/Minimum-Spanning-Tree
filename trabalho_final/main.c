@@ -8,14 +8,19 @@ int main()
 {
     grafo_t* grafo;
     arvore_t* arvore;
+    int numero_arestas_adicionadas = 0;
 
-    grafo = importar_grafo("grafo.txt");
+    grafo = importar_grafo("grafo.txt", &numero_arestas_adicionadas);
 
-    //exportar_grafo_dot("saida_grafo.txt", grafo);
+    printf("numero de arestas eh %d \n", numero_arestas_adicionadas);
 
-    arvore = minimum_spannin_tree(grafo);
+    arvore = minimum_spannin_tree(grafo, numero_arestas_adicionadas);
 
     exportar_arvore_dot("minimum_spanning_tree.txt", arvore);
+
+
+    libera_grafo(grafo);
+    libera_arvore(arvore);
 
     return 0;
 }

@@ -47,7 +47,7 @@ void libera_grafo (grafo_t *grafo);
 /* Retorna TRUE se vertice_procurado estiver no conjunto Q*/
 int busca_vertice(lista_enc_t *lista, vertice_t *vertice_procurado);
 
-grafo_t *importar_grafo(const char *arquivo);
+grafo_t *importar_grafo(const char *arquivo, int *numero_arestas);
 
 lista_enc_t *grafo_get_vertices(grafo_t *grafo);
 

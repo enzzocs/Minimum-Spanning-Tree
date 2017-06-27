@@ -149,7 +149,7 @@ void exportar_arvore_dot(const char *filename, arvore_t *arvore)
     fprintf(file, "}\n");
     fclose(file);
 }
-arvore_t *minimum_spannin_tree (grafo_t *grafo){
+arvore_t *minimum_spannin_tree (grafo_t *grafo, int numero_arestas){
     arvore_t *arvore;
     no_t *no_vert;
     no_t *no_aresta;
@@ -166,7 +166,7 @@ arvore_t *minimum_spannin_tree (grafo_t *grafo){
 
     auxiliar = cria_aresta(NULL, NULL, NULL);
 
-    lista_arestas_possiveis = malloc(11*sizeof(arestas_t*));
+    lista_arestas_possiveis = malloc(2*numero_arestas*sizeof(arestas_t*));
 
     no_vert = obter_cabeca(grafo_get_vertices(grafo));
 
@@ -175,6 +175,8 @@ arvore_t *minimum_spannin_tree (grafo_t *grafo){
     vertice_set_sub(vertice, pai);
 
     while(no_vert){
+        if(obtem_proximo(no_vert)== NULL)
+            break;
         //vertice = obter_dado(no_vert);
         vertice_set_vist(vertice, 1);
         //printf("teste\n");
@@ -185,39 +187,53 @@ arvore_t *minimum_spannin_tree (grafo_t *grafo){
             aresta = obter_dado(no_aresta);
             //if(vertice_get_vist(aresta_get_dest(aresta))!=1){
             lista_arestas_possiveis[i]= aresta;
-            //printf("%d -- %d\n", i, aresta_get_peso(lista_arestas_possiveis[i]));
+            printf("%d -- %d\n", i, aresta_get_peso(lista_arestas_possiveis[i]));
             //}
             i++;
 
             no_aresta = obtem_proximo(no_aresta);
         }
+        while(1){
+            if((vertice_get_vist(aresta_get_dest(lista_arestas_possiveis[j])) && vertice_get_vist(aresta_get_fonte(lista_arestas_possiveis[j]))) == 0){
+                aresta = lista_arestas_possiveis[j];
+                break;
+            }
+            j++;
+        }
 
-        aresta = lista_arestas_possiveis[j];
         aux=0;
+        printf("j eh %d\n", j);
         while(j<i-1){
             if(aresta_get_peso(aresta)>aresta_get_peso(lista_arestas_possiveis[j+1])){
-                if((vertice_get_vist(aresta_get_dest(aresta))&& vertice_get_vist(aresta_get_fonte(aresta))) == 0){
+                if((vertice_get_vist(aresta_get_dest(lista_arestas_possiveis[j+1])) && vertice_get_vist(aresta_get_fonte(lista_arestas_possiveis[j+1]))) == 0){
                     aresta = lista_arestas_possiveis[j+1];
                     aux= j+1;
            //         printf("teste");
                 }
             //printf("%d -- %d\n", i, j);
-
+            }
             j++;
         }
+        printf("j depois do while eh %d\n", j);
+        printf(" A menor aresta eh: %d\n", aresta_get_peso(aresta));
 
         if(vertice_get_vist(aresta_get_fonte(aresta)) == 1 ){
+            printf("entrou na fonte\n");
             vertice = aresta_get_dest(aresta);
+            printf("o filho eh %s\n", vertice_get_id(vertice));
             filho = arvore_adicionar_subarvore(arvore, vertice_get_id(vertice));
             vertice_set_sub(vertice, filho);
             vertice = aresta_get_fonte(aresta);
+            printf("o pai eh %s\n", vertice_get_id(vertice));
             pai = vertice_get_sub(vertice);
+            printf("o pai pela subarvore eh %s\n", pai->id);
             //printf("%s -- %s\n", pai->id, filho->id);
             define_pai_por_ptr(pai, filho, aresta_get_peso(aresta));
 
             vertice = aresta_get_dest(aresta);
         }
         else {
+            printf("entrou no destino\n");
             vertice = aresta_get_fonte(aresta);
             filho = arvore_adicionar_subarvore(arvore, vertice_get_id(vertice));
             vertice_set_sub(vertice, filho);
@@ -255,6 +271,47 @@ arvore_t *minimum_spannin_tree (grafo_t *grafo){
 
         no_vert = obtem_proximo(no_vert);
     }
-    return arvore;
+
+return arvore;
 }
+
+void libera_arvore (arvore_t *arvore)
+{
+    no_t *no_sub_arvore;
+    no_t *no_sub_arvore_2;
+    no_t *no_liberado;
+    sub_arvore_t *sub_arvore;
+
+    if (arvore == NULL)
+    {
+        fprintf(stderr, "libera_arvore: grafo invalido\n");
+        exit(EXIT_FAILURE);
+    }
+
+    //varre todos os vertices
+    no_sub_arvore = obter_cabeca(arvore->sub_arvores);
+    while (no_sub_arvore)
+    {
+        sub_arvore = obter_dado(no_sub_arvore);
+
+        no_sub_arvore_2 = obter_cabeca(sub_arvore->sub_arvores);
+        while(no_sub_arvore_2){
+            no_liberado = no_sub_arvore_2;
+            no_sub_arvore_2 = obtem_proximo(no_sub_arvore_2);
+            free(no_liberado);
+        }
+        free(sub_arvore->sub_arvores);
+
+        free(sub_arvore);
+
+        //libera no da lista
+        no_liberado = no_sub_arvore;
+        no_sub_arvore = obtem_proximo(no_sub_arvore);
+        free(no_liberado);
+    }
+
+    //libera grafo e vertice
+    free(arvore->sub_arvores);
+    free(arvore);
 }
+

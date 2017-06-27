@@ -7,6 +7,7 @@
 #include "vertice.h"
 #include "../lista_enc/lista_enc.h"
 #include "../lista_enc/no.h"
+#include "../arvore/arvore.h"
 
 
 #define FALSE 0
@@ -237,6 +238,7 @@ void libera_grafo (grafo_t *grafo)
     vertice_t *vertice;
     arestas_t *aresta;
     lista_enc_t *lista_arestas;
+    sub_arvore_t *sub_arvore;
 
     if (grafo == NULL)
     {
@@ -267,6 +269,10 @@ void libera_grafo (grafo_t *grafo)
         }
 
         //libera lista de arestas e vertice
+
+        free(vertice_get_id(vertice));
+        sub_arvore = vertice_get_sub(vertice);
+        free(sub_arvore);
         free(lista_arestas);
         free(vertice);
 
@@ -293,7 +299,7 @@ lista_enc_t *passa_vertice(grafo_t *grafo)
     return grafo->vertices;
 }
 
-grafo_t *importar_grafo(const char *arquivo){
+grafo_t *importar_grafo(const char *arquivo, int *numero_arestas){
 
     char buffer[100];
     int ret, label;
@@ -348,6 +354,8 @@ grafo_t *importar_grafo(const char *arquivo){
         //printf("%s\n", vertice_get_id(elemento_filho));
 
         adiciona_aresta(elemento_pai, cria_aresta(elemento_pai, elemento_filho, label));
+        adiciona_aresta(elemento_filho, cria_aresta(elemento_pai, elemento_filho, label));
+        ++*numero_arestas;
 
 
     }

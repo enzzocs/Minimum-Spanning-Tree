@@ -16,6 +16,6 @@ void exportar_arvore_dot(const char *filename, arvore_t *arvore);
 
 sub_arvore_t *arvore_adicionar_subarvore(arvore_t *arvore, char* id);
 
-arvore_t *minimum_spannin_tree (grafo_t *grafo);
+arvore_t *minimum_spannin_tree (grafo_t *grafo, int numero_arestas);
 
 #endif // ARVORE_H_INCLUDED
