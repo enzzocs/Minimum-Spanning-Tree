@@ -12,8 +12,6 @@ int main()
 
     grafo = importar_grafo("grafo.txt", &numero_arestas_adicionadas);
 
-    printf("numero de arestas eh %d \n", numero_arestas_adicionadas);
-
     arvore = minimum_spannin_tree(grafo, numero_arestas_adicionadas);
 
     exportar_arvore_dot("minimum_spanning_tree.txt", arvore);

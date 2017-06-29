@@ -177,18 +177,13 @@ arvore_t *minimum_spannin_tree (grafo_t *grafo, int numero_arestas){
     while(no_vert){
         if(obtem_proximo(no_vert)== NULL)
             break;
-        //vertice = obter_dado(no_vert);
         vertice_set_vist(vertice, 1);
-        //printf("teste\n");
         lista_arestas = vertice_get_arestas(vertice);
         no_aresta = obter_cabeca(lista_arestas);
 
         while (no_aresta){
             aresta = obter_dado(no_aresta);
-            //if(vertice_get_vist(aresta_get_dest(aresta))!=1){
             lista_arestas_possiveis[i]= aresta;
-            printf("%d -- %d\n", i, aresta_get_peso(lista_arestas_possiveis[i]));
-            //}
             i++;
 
             no_aresta = obtem_proximo(no_aresta);
@@ -202,51 +197,39 @@ arvore_t *minimum_spannin_tree (grafo_t *grafo, int numero_arestas){
         }
 
         aux=0;
-        printf("j eh %d\n", j);
+
         while(j<i-1){
             if(aresta_get_peso(aresta)>aresta_get_peso(lista_arestas_possiveis[j+1])){
                 if((vertice_get_vist(aresta_get_dest(lista_arestas_possiveis[j+1])) && vertice_get_vist(aresta_get_fonte(lista_arestas_possiveis[j+1]))) == 0){
                     aresta = lista_arestas_possiveis[j+1];
                     aux= j+1;
-           //         printf("teste");
                 }
-            //printf("%d -- %d\n", i, j);
             }
             j++;
         }
-        printf("j depois do while eh %d\n", j);
-        printf(" A menor aresta eh: %d\n", aresta_get_peso(aresta));
 
         if(vertice_get_vist(aresta_get_fonte(aresta)) == 1 ){
-            printf("entrou na fonte\n");
             vertice = aresta_get_dest(aresta);
-            printf("o filho eh %s\n", vertice_get_id(vertice));
             filho = arvore_adicionar_subarvore(arvore, vertice_get_id(vertice));
             vertice_set_sub(vertice, filho);
             vertice = aresta_get_fonte(aresta);
-            printf("o pai eh %s\n", vertice_get_id(vertice));
             pai = vertice_get_sub(vertice);
-            printf("o pai pela subarvore eh %s\n", pai->id);
-            //printf("%s -- %s\n", pai->id, filho->id);
             define_pai_por_ptr(pai, filho, aresta_get_peso(aresta));
 
             vertice = aresta_get_dest(aresta);
         }
         else {
-            printf("entrou no destino\n");
             vertice = aresta_get_fonte(aresta);
             filho = arvore_adicionar_subarvore(arvore, vertice_get_id(vertice));
             vertice_set_sub(vertice, filho);
             vertice = aresta_get_dest(aresta);
             pai = vertice_get_sub(vertice);
-            //printf("%s -- %s", &pai, &filho);
             define_pai_por_ptr(pai, filho, aresta_get_peso(aresta));
 
             vertice = aresta_get_fonte(aresta);
         }
 
         while(x<=i-1){
-            printf("antes: %d\n", aresta_get_peso(lista_arestas_possiveis[x]));
             x++;
         }
 
@@ -262,10 +245,9 @@ arvore_t *minimum_spannin_tree (grafo_t *grafo, int numero_arestas){
         j=0;
 
         while(x<=i){
-            printf("depois: %d\n", aresta_get_peso(lista_arestas_possiveis[x]));
             x++;
         }
-        printf("\n");
+
         x=0;
 
 
