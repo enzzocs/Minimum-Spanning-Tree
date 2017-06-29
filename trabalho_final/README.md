@@ -34,4 +34,5 @@ Medições:
 ==13138==    still reachable: 0 bytes in 0 blocks                               
 ==13138==         suppressed: 0 bytes in 0 blocks                               
 ==13138== Rerun with --leak-check=full to see details of leaked memory  
-	
+
+Complexidade: O(n²)

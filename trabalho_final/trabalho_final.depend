@@ -58,7 +58,7 @@
 1498594584 c:\users\maria negri\desktop\projeto\projeto_prog\projeto_prog\trabalho_final\arvore\arvore.h
 	"../grafo/grafo.h"
 
-1498448428 source:c:\users\csenz\onedrive\documentos\github\projeto_prog\trabalho_final\arvore\arvore.c
+1498770771 source:c:\users\csenz\onedrive\documentos\github\projeto_prog\trabalho_final\arvore\arvore.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
@@ -66,16 +66,16 @@
 	"../lista_enc/lista_enc.h"
 	"../grafo/vertice.h"
 
-1497981335 source:c:\users\csenz\onedrive\documentos\github\projeto_prog\trabalho_final\main.c
+1498770771 source:c:\users\csenz\onedrive\documentos\github\projeto_prog\trabalho_final\main.c
 	<stdio.h>
 	<stdlib.h>
 	"grafo/grafo.h"
 	"arvore/arvore.h"
 
-1497910253 c:\users\csenz\onedrive\documentos\github\projeto_prog\trabalho_final\grafo\grafo.h
+1498770771 c:\users\csenz\onedrive\documentos\github\projeto_prog\trabalho_final\grafo\grafo.h
 	"vertice.h"
 
-1497980030 c:\users\csenz\onedrive\documentos\github\projeto_prog\trabalho_final\grafo\vertice.h
+1498771745 c:\users\csenz\onedrive\documentos\github\projeto_prog\trabalho_final\grafo\vertice.h
 	"../lista_enc/lista_enc.h"
 
 1496927659 c:\users\csenz\onedrive\documentos\github\projeto_prog\trabalho_final\lista_enc\lista_enc.h
@@ -89,7 +89,7 @@
 	"lista_enc.h"
 	"no.h"
 
-1497977289 source:c:\users\csenz\onedrive\documentos\github\projeto_prog\trabalho_final\grafo\grafo.c
+1498770771 source:c:\users\csenz\onedrive\documentos\github\projeto_prog\trabalho_final\grafo\grafo.c
 	<stdio.h>
 	<stdlib.h>
 	<stdarg.h>
@@ -99,8 +99,9 @@
 	"vertice.h"
 	"../lista_enc/lista_enc.h"
 	"../lista_enc/no.h"
+	"../arvore/arvore.h"
 
-1498443821 source:c:\users\csenz\onedrive\documentos\github\projeto_prog\trabalho_final\grafo\vertice.c
+1498771745 source:c:\users\csenz\onedrive\documentos\github\projeto_prog\trabalho_final\grafo\vertice.c
 	<stdlib.h>
 	<stdio.h>
 	<string.h>
@@ -113,6 +114,6 @@
 	<stdlib.h>
 	"no.h"
 
-1497979218 c:\users\csenz\onedrive\documentos\github\projeto_prog\trabalho_final\arvore\arvore.h
+1498770771 c:\users\csenz\onedrive\documentos\github\projeto_prog\trabalho_final\arvore\arvore.h
 	"../grafo/grafo.h"
 

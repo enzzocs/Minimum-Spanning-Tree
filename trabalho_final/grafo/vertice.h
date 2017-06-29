@@ -68,6 +68,7 @@ void copia2(arestas_t **lista, arestas_t *fonte, int i);
 
 void copia (arestas_t **lista, int i, int j);
 
+
 //void vertice_set_sub(vertice_t *vertice, sub_arvore_t *sub);
 
 

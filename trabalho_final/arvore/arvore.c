@@ -160,7 +160,7 @@ arvore_t *minimum_spannin_tree (grafo_t *grafo, int numero_arestas){
     sub_arvore_t *filho;
     lista_enc_t *lista_arestas;
     arestas_t **lista_arestas_possiveis; //arestas para onde o grafo pode andar para formar a arvore
-    int i=0, x=0;
+    int i=0;
     int j=0, aux;
     arvore = cria_arvore(1);
 
@@ -229,10 +229,6 @@ arvore_t *minimum_spannin_tree (grafo_t *grafo, int numero_arestas){
             vertice = aresta_get_fonte(aresta);
         }
 
-        while(x<=i-1){
-            x++;
-        }
-
         //auxiliar = lista_arestas_possiveis[i-1];
 
 
@@ -240,16 +236,8 @@ arvore_t *minimum_spannin_tree (grafo_t *grafo, int numero_arestas){
         copia(lista_arestas_possiveis, i-1, aux); //lista_arestas_possiveis[i] = lista_arestas_possiveis[aux];
         copia2(lista_arestas_possiveis, auxiliar, aux); //lista_arestas_possiveis[aux]=auxiliar;
 
-        x=0;
         i= i-1;
         j=0;
-
-        while(x<=i){
-            x++;
-        }
-
-        x=0;
-
 
         no_vert = obtem_proximo(no_vert);
     }
